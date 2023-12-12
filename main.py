@@ -1,7 +1,6 @@
 import pandas as pd
 import streamlit as st
 import json
-from streamlit_option_menu import option_menu
 
 st.set_page_config(layout="wide")
 st.title("Дашборд")
@@ -33,9 +32,5 @@ for i in structure.keys():
 for i in d:
     for key, value in i.items():
         master_merge_dict[key] = value
-
-selected = option_menu(None, options=["Готовность", "Качество", "Выработка","Инициативы"],
-                            icons=['bar-chart-steps','bricks','hexagon-half','diagram-2'],
-                            orientation="horizontal")
 
 st.dataframe(df_izm_group)
