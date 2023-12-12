@@ -11,16 +11,6 @@ st.title("Калькулятор")
 st.markdown("### Если за отчетный период был перевод просьба указать, если нет переходи к рассчету премии")
 on = st.toggle("Был перевод")
 
-
-uploaded_file = st.file_uploader(
-    "Выбирите данные", accept_multiple_files=False)
-if uploaded_file is not None:
-    file_name = uploaded_file
-else:
-    file_name = "data.xlsx"
-
-df_load = pd.read_excel(file_name, sheet_name="P_RD")
-
-
+df_load = pd.read_excel('data.xlsx', sheet_name="P_RD")
 
 st.dataframe(df_load)
