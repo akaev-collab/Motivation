@@ -40,7 +40,7 @@ for i in d:
         
 filter_selected_master = st.multiselect("Мастерская", master_merge_dict.keys(), master_merge_dict.keys())
 
-chart_width = 1200
+chart_width = 1500
 chart_height = 400
 
 tabel_1, tabel_2, tabel_3 = st.tabs(["Готовность", "Качество", "Выработка"])
