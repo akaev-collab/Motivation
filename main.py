@@ -10,11 +10,15 @@ st.title("Дашборд")
 def load_data():
     
     file_name = "data.xlsx"
+    
     df_load_group = pd.read_excel(file_name, sheet_name="P_RD_group")
-
+    df_load_group["Дата"] = df_load_group["Дата"].apply(pd.to_datetime, format = "%Y-%m-%d")
+    
     df_izm_group = pd.read_excel(file_name, sheet_name="IZM_group")
-
+    df_izm_group["Дата"] = df_izm_group["Дата"].apply(pd.to_datetime)
+    
     df_productivity_group = pd.read_excel(file_name, sheet_name="Productivity_group")
+    df_productivity_group["Дата"] = df_productivity_group["Дата"].apply(pd.to_datetime)
 
     return df_load_group, df_izm_group, df_productivity_group
 
