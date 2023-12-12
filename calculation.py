@@ -18,3 +18,14 @@ if uploaded_file is not None:
     file_name = uploaded_file
 else:
     file_name = "data.xlsx"
+
+@st.cache_data
+def load_data():
+    df_load = pd.read_excel(file_name, sheet_name="P_RD")
+    df_load["Срок выдачи (факт)"] = df_load["Срок выдачи (факт)"].apply(pd.to_datetime, format = "%Y-%m-%d")
+    
+    return df_load
+
+df_load = load_data()
+
+st.dataframe(df_load)
