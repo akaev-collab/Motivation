@@ -104,4 +104,24 @@ with tabel_2:
     st.altair_chart((chart_izm + selectors + points + text + rules).interactive())
 
 with tabel_3:
-   st.header("Выработка")
+    st.header("Выработка")
+    
+    df_productivity_group = df_productivity_group[df_productivity_group["Мастерская"].isin(filter_selected_master)]
+
+    df_productivity_plan = df_productivity_group.groupby([df_productivity_group["Дата"].dt.strftime("%Y-%m-1")]).aggregate({"План":"sum"}).reset_index().round({"План":2})
+
+    df_productivity_fact = df_productivity_group.groupby([df_productivity_group["Дата"].dt.strftime("%Y-%m-1")]).aggregate({"Факт":"sum"}).reset_index().round({"Факт":2})
+
+    bar_productivity_plan = alt.Chart(df_productivity_plan).mark_bar(width=22, xOffset=-10, color="grey").encode(
+        alt.X("Дата:T", title="", axis=alt.Axis(format="%m.%Y")),
+        y = "План", 
+        tooltip=["Дата:T", "План"]
+    ).properties(width=chart_width, height=chart_height)
+
+    bar_productivity_fact = alt.Chart(df_productivity_fact, title = "Продуктивность").mark_bar(width=22, xOffset=10, color = "#007FFF").encode(
+        alt.X("Дата:T"),
+        y = "Факт",
+        tooltip=["Дата:T", "Факт"]
+    ).properties(width=chart_width, height=chart_height)
+
+    st.altair_chart(bar_productivity_plan + bar_productivity_fact)
