@@ -10,25 +10,3 @@ st.set_page_config(layout="wide")
 st.title("Калькулятор")
 st.markdown("### Если за отчетный период был перевод просьба указать, если нет переходи к рассчету премии")
 on = st.toggle("Был перевод")
-
-
-file_name = "data.xlsx"
- 
-@st.cache_data
-def load_data():
-    
-    df_load = pd.read_excel(file_name, sheet_name="P_RD")
-    df_load["Срок выдачи (факт)"] = df_load["Срок выдачи (факт)"].apply(pd.to_datetime, format = "%Y-%m-%d")
-
-
-    df_izm = pd.read_excel(file_name, sheet_name="IZM")
-    df_izm["Дата изменения (факт)"] = df_izm["Дата изменения (факт)"].apply(pd.to_datetime, format = "%Y-%m-%d")
-
-    df_productivity = pd.read_excel(file_name, sheet_name="Productivity_group")
-    df_productivity["Дата"] = df_productivity["Дата"].apply(pd.to_datetime, format = "%Y-%m-%d")
-    
-    return df_load, df_izm, df_productivity
-
-df_load,  df_izm, df_productivity = load_data()
-
-st.dataframe(df_load)
