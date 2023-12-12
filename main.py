@@ -5,7 +5,6 @@ import altair as alt
 import datetime as dt
 
 st.set_page_config(layout="wide")
-st.set_theme('light')
 st.title("Дашборд")
 
 def load_data():
