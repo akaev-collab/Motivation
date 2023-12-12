@@ -17,4 +17,4 @@ def load_data():
 
 df_load_group, df_izm_group, df_productivity_group = load_data()
 
-st.dataframe(df_load_group)
+st.dataframe(df_izm_group)
