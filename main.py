@@ -5,8 +5,8 @@ st.title("New page")
 
 def load_data():
     
-    path_to_data = "data.xlsx"
-    df_load_group = pd.read_excel(path_to_data, sheet_name="P_RD_group")
+    file_name = "data.xlsx"
+    df_load_group = pd.read_excel(file_name, sheet_name="P_RD_group")
     
     return df_load_group
 
