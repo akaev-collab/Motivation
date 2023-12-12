@@ -5,6 +5,7 @@ import altair as alt
 import datetime as dt
 
 st.set_page_config(layout="wide")
+st.title("Дашборд")
 
 
 def load_data():
