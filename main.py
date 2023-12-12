@@ -18,7 +18,6 @@ def load_data():
 
 df_load_group, df_izm_group, df_productivity_group = load_data()
 
-
 path_to_json = "Structure/structure.json"
 
 with open (path_to_json, "r", encoding='utf-8') as file:
@@ -33,4 +32,17 @@ for i in d:
     for key, value in i.items():
         master_merge_dict[key] = value
 
+tabel_1, tabel_2, tabel_3 = st.tabs(["Готовность", "Качество", "Выработка"])
+
+with tab1:
+   st.header("Готовность")
+   
+
+with tab2:
+   st.header("Качество")
+   
+
+with tab3:
+   st.header("Выработка")
+   
 st.dataframe(df_izm_group)
