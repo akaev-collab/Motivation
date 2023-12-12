@@ -11,3 +11,5 @@ def load_data():
     return df_load_group
 
 df_load_group = load_data()
+
+st.dataframe(df_load_group)
