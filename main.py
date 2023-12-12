@@ -34,15 +34,15 @@ for i in d:
 
 tabel_1, tabel_2, tabel_3 = st.tabs(["Готовность", "Качество", "Выработка"])
 
-with tab1:
+with tabel_1:
    st.header("Готовность")
    
 
-with tab2:
+with tabel_2:
    st.header("Качество")
    
 
-with tab3:
+with tabel_3:
    st.header("Выработка")
    
 st.dataframe(df_izm_group)
