@@ -8,3 +8,5 @@ st.markdown("### Если за отчетный период был перево
 on = st.toggle("Был перевод")
 
 d = pd.read_excel('data.xlsx')
+
+st.dataframe(d)
