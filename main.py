@@ -70,8 +70,38 @@ with tabel_1:
     
 with tabel_2:
     st.header("Качество")
-   
+    
+    df_izm_group = df_izm_group[df_izm_group["Мастерская"].isin(filter_selected_master)]
+    df_izm_group = df_izm_group.round({"% ИЗМ":2})
+
+    chart_izm = alt.Chart(df_izm_group).mark_line(width=18).encode(
+        alt.X("Дата"),
+        alt.Y("% ИЗМ"),
+        color="Мастерская"
+    ).properties(width=800, height=400)
+
+    nearest = alt.selection(type='single', nearest=True, on='mouseover',
+                        fields=['Дата'], empty='none')
+
+    selectors = alt.Chart(df_izm_group).mark_point().encode(
+        x='Дата',
+        opacity=alt.value(0),
+    ).add_selection(nearest)
+
+    points = chart_izm.mark_point(size=70).encode(
+        opacity=alt.condition(nearest, alt.value(1), alt.value(0))
+    )
+
+    text = chart_izm.mark_text(align='left', dx=25, dy=-25).encode(
+    text=alt.condition(nearest, '% ИЗМ:Q', alt.value(' ')))
+        
+    rules = alt.Chart().mark_rule(color='gray').encode(
+    x='Дата:T',
+    ).transform_filter(
+    nearest
+    )
+
+    st.altair_chart((chart_izm + selectors + points + text + rules).interactive())
+
 with tabel_3:
    st.header("Выработка")
-
-st.dataframe(df_izm_group)
