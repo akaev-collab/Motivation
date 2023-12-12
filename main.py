@@ -3,10 +3,11 @@ import streamlit as st
 
 st.title("New page")
 
-data = pd.DataFrame({"a":[1,24,3], 'b':[2,45,34]})
+def load_data():
+    
+    path_to_data = "data.xlsx"
+    df_load_group = pd.read_excel(path_to_data, sheet_name="P_RD_group")
+    
+    return df_load_group
 
-data_1 = pd.read_excel('data.xlsx', sheet_name="P_RD")
-
-st.dataframe(data_1)
-
-st.text("new line")
+df_load_group = load_data()
