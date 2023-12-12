@@ -18,7 +18,7 @@ df_load_group, df_izm_group, df_izm_group = load_data()
 path_to_json = "Structure"
 
 with open (path_to_json +"/structure.json", "r", encoding='utf-8') as file:
-    structure = json.load(file) # зависимость мастерской и группу от управления
+    structure = json.load(file)
 
 d = []
 master_merge_dict = {}
