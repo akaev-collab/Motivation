@@ -15,9 +15,9 @@ def load_data():
 
 df_load_group, df_izm_group, df_izm_group = load_data()
 
-path_to_json = "Structure"
+path_to_json = "structure.json"
 
-with open (path_to_json +"/structure.json", "r", encoding='utf-8') as file:
+with open (path_to_json, "r", encoding='utf-8') as file:
     structure = json.load(file)
 
 d = []
