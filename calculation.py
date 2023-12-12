@@ -11,13 +11,9 @@ st.title("Калькулятор")
 st.markdown("### Если за отчетный период был перевод просьба указать, если нет переходи к рассчету премии")
 on = st.toggle("Был перевод")
 
-uploaded_file = st.file_uploader(
-    "Choose your database", accept_multiple_files=False)
-if uploaded_file is not None:
-    file_name = uploaded_file
-else:
-    file_name = "data.xlsx"
 
+file_name = "data.xlsx"
+ 
 @st.cache_data
 def load_data():
     
