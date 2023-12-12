@@ -36,13 +36,11 @@ tabel_1, tabel_2, tabel_3 = st.tabs(["Готовность", "Качество",
 
 with tabel_1:
    st.header("Готовность")
-   
-
+    
 with tabel_2:
    st.header("Качество")
    
-
 with tabel_3:
    st.header("Выработка")
-   
+
 st.dataframe(df_izm_group)
