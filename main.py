@@ -31,7 +31,8 @@ for i in structure.keys():
 for i in d:
     for key, value in i.items():
         master_merge_dict[key] = value
-
+        
+filter_selected_master = st.multiselect("Мастерская", master_merge_dict.keys(), master_merge_dict.keys())
 tabel_1, tabel_2, tabel_3 = st.tabs(["Готовность", "Качество", "Выработка"])
 
 with tabel_1:
