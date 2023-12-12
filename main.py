@@ -46,13 +46,13 @@ chart_height = 400
 tabel_1, tabel_2, tabel_3 = st.tabs(["Готовность", "Качество", "Выработка"])
 
 with tabel_1:
-    st.header("Готовность")
+    st.header("Готовность документации")
     df_load_group = df_load_group[df_load_group["Мастерская"].isin(filter_selected_master)]
     df_load_plan = df_load_group.groupby([df_load_group["Дата"].dt.strftime("%Y-%m-1")]).aggregate({"План":"sum"}).reset_index()
     df_load_fact = df_load_group.groupby([df_load_group["Дата"].dt.strftime("%Y-%m-1")]).aggregate({"Факт":"sum"}).reset_index()
 
     bar_load_plan = alt.Chart(df_load_plan).mark_bar(width=22, xOffset=-10, color="grey").encode(
-        alt.X("Дата:T", title="", axis=alt.Axis(format="%m.%Y")),
+        alt.X("Дата:T", axis=alt.Axis(format="%m.%Y")),
         y = "План", 
         tooltip=["Дата:T", "План"]
     ).properties(width=chart_width, height=chart_height)
@@ -74,7 +74,7 @@ with tabel_1:
     st.altair_chart(bar_load_fact_total)
     
 with tabel_2:
-    st.header("Качество")
+    st.header("Качество документации")
     
     df_izm_group = df_izm_group[df_izm_group["Мастерская"].isin(filter_selected_master)]
     df_izm_group = df_izm_group.round({"% ИЗМ":2})
@@ -109,7 +109,7 @@ with tabel_2:
     st.altair_chart((chart_izm + selectors + points + text + rules).interactive())
 
 with tabel_3:
-    st.header("Выработка")
+    st.header("Продуктивность мастерских")
     
     df_productivity_group = df_productivity_group[df_productivity_group["Мастерская"].isin(filter_selected_master)]
 
@@ -118,12 +118,12 @@ with tabel_3:
     df_productivity_fact = df_productivity_group.groupby([df_productivity_group["Дата"].dt.strftime("%Y-%m-1")]).aggregate({"Факт":"sum"}).reset_index().round({"Факт":2})
 
     bar_productivity_plan = alt.Chart(df_productivity_plan).mark_bar(width=22, xOffset=-10, color="grey").encode(
-        alt.X("Дата:T", title="", axis=alt.Axis(format="%m.%Y")),
+        alt.X("Дата:T", axis=alt.Axis(format="%m.%Y")),
         y = "План", 
         tooltip=["Дата:T", "План"]
     ).properties(width=chart_width, height=chart_height)
 
-    bar_productivity_fact = alt.Chart(df_productivity_fact, title = "Продуктивность").mark_bar(width=22, xOffset=10, color = "#007FFF").encode(
+    bar_productivity_fact = alt.Chart(df_productivity_fact).mark_bar(width=22, xOffset=10, color = "#007FFF").encode(
         alt.X("Дата:T"),
         y = "Факт",
         tooltip=["Дата:T", "Факт"]
