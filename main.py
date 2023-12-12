@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
 
-st.title("New page")
+st.set_page_config(layout="wide")
 
 def load_data():
     
